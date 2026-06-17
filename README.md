@@ -23,6 +23,10 @@ This working copy contains an additional German GDPR/DSGVO operating baseline:
 - [`docs/VERZEICHNIS_VERARBEITUNGSTAETIGKEITEN.md`](docs/VERZEICHNIS_VERARBEITUNGSTAETIGKEITEN.md) as an Article-30-style operating template
 - [`docs/TOM_CHECKLISTE.md`](docs/TOM_CHECKLISTE.md) for technical and organisational measures
 - [`docs/BETROFFENENRECHTE_PROZESS.md`](docs/BETROFFENENRECHTE_PROZESS.md) for access/deletion request handling
+- [`docs/DATENSCHUTZHINWEIS_TEMPLATE.md`](docs/DATENSCHUTZHINWEIS_TEMPLATE.md) as a player/admin privacy notice template
+- [`docs/ANBIETER_UND_AVV_REGISTER.md`](docs/ANBIETER_UND_AVV_REGISTER.md) for external provider and DPA/AVV tracking
+- [`docs/INCIDENT_RESPONSE.md`](docs/INCIDENT_RESPONSE.md) for data breach handling
+- [`docs/PRODUKTIONSFREIGABE.md`](docs/PRODUKTIONSFREIGABE.md) for the final production sign-off
 - [`.env.dsgvo.example`](.env.dsgvo.example) for privacy-oriented environment defaults
 
 It also adds a dry-run-first retention command:

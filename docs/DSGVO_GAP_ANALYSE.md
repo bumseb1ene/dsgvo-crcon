@@ -30,12 +30,12 @@ Die EU-Kommission beschreibt die DSGVO-Verantwortung als Nachweispflicht: Eine O
 | --- | --- | --- | --- |
 | P0 | Verantwortlichen festlegen | Ohne Betreiber, Zweck und Kontakt kann keine DSGVO-Auskunft sauber beantwortet werden. | Name, Anschrift, Kontakt, Datenschutzkontakt in Betreiberunterlagen |
 | P0 | Zwecke und Rechtsgrundlagen festlegen | Moderation, Sicherheit, Community-Verwaltung und optionale Statistik brauchen dokumentierte Zwecke. | ausgefuelltes `docs/VERZEICHNIS_VERARBEITUNGSTAETIGKEITEN.md` |
-| P0 | Informationspflichten bereitstellen | Spieler und Admins muessen wissen, welche Daten verarbeitet werden. | Datenschutzhinweis fuer Website/Discord/Server-Regeln |
+| P0 | Informationspflichten bereitstellen | Spieler und Admins muessen wissen, welche Daten verarbeitet werden. | `docs/DATENSCHUTZHINWEIS_TEMPLATE.md` anpassen und veroeffentlichen |
 | P0 | Zugriffskonzept finalisieren | Admins sehen Spielerprofile, Logs, Chat und Moderationshistorie. | Rollenmodell, Admin-Liste, Review-Termin |
 | P0 | TLS und Netzwerkhaertung pruefen | Direkte HTTP-/RCON-/DB-Ports duerfen nicht offen im Internet haengen. | Reverse Proxy mit TLS, Firewall-Regeln, keine offenen internen Ports |
 | P0 | Backup- und Loeschfristen freigeben | `privacy_purge --execute` darf erst laufen, wenn Wiederherstellung und Fristen geklaert sind. | dokumentierte Fristen, getestetes Restore, automatisierter Purge |
-| P0 | Auftragsverarbeiter pruefen | VPS/Hosting, Discord, Sentry, Backup-Ziel, Mail/Monitoring koennen externe Empfaenger sein. | AVV/DPA-Liste mit Anbieter, Zweck, Region, Status |
-| P0 | Incident-Prozess festlegen | Bei Datenschutzverletzungen kann eine Meldung binnen 72 Stunden erforderlich sein. | Kontaktkette, Log-Sicherung, Meldeentscheidung, Vorlage |
+| P0 | Auftragsverarbeiter pruefen | VPS/Hosting, Discord, Sentry, Backup-Ziel, Mail/Monitoring koennen externe Empfaenger sein. | `docs/ANBIETER_UND_AVV_REGISTER.md` ausfuellen |
+| P0 | Incident-Prozess festlegen | Bei Datenschutzverletzungen kann eine Meldung binnen 72 Stunden erforderlich sein. | `docs/INCIDENT_RESPONSE.md` ausfuellen |
 | P1 | Betroffenenrechte-Prozess testen | Auskunft, Loeschung und Einschraenkung muessen praktisch durchfuehrbar sein. | Testfall nach `docs/BETROFFENENRECHTE_PROZESS.md` |
 | P1 | DPIA-Schwelle pruefen | Hohe Risiken koennen eine Datenschutz-Folgenabschaetzung erfordern. | Entscheidung dokumentiert: nicht erforderlich oder DPIA-Datei |
 | P1 | Webhook-Minimierung | Discord kann Chat, Spieler-IDs und Moderationsereignisse weitertragen. | nur notwendige Webhooks, Kanalrechte, Aufbewahrung in Discord |
@@ -56,15 +56,19 @@ Vor dem ersten Live-Betrieb sollte der Betreiber diese Reihenfolge abarbeiten:
 
 1. `docs/VERZEICHNIS_VERARBEITUNGSTAETIGKEITEN.md` ausfuellen.
 2. `docs/TOM_CHECKLISTE.md` abarbeiten.
-3. Datenschutzhinweis fuer Spieler/Admins veroeffentlichen.
-4. `privacy_purge` trocken ausfuehren und Ergebnis pruefen.
-5. Backup-Restore testen.
-6. `privacy_purge --execute` manuell testen.
-7. Erst danach automatisierte Loeschung aktivieren.
+3. `docs/DATENSCHUTZHINWEIS_TEMPLATE.md` anpassen und veroeffentlichen.
+4. `docs/ANBIETER_UND_AVV_REGISTER.md` ausfuellen.
+5. `docs/INCIDENT_RESPONSE.md` fuer Kontaktkette und 72-Stunden-Pruefung vorbereiten.
+6. `privacy_purge` trocken ausfuehren und Ergebnis pruefen.
+7. Backup-Restore testen.
+8. `privacy_purge --execute` manuell testen.
+9. `docs/PRODUKTIONSFREIGABE.md` abschliessen.
+10. Erst danach automatisierte Loeschung aktivieren.
 
 ## Quellen
 
 - EU-Kommission: [Rules for business and organisations](https://commission.europa.eu/law/law-topic/data-protection/rules-business-and-organisations_en)
+- EU-Kommission: [Informationspflichten](https://commission.europa.eu/law/law-topic/data-protection/rules-business-and-organisations/principles-gdpr/what-information-must-be-given-individuals-whose-data-collected_en)
 - EU-Kommission: [Controller oder Processor](https://commission.europa.eu/law/law-topic/data-protection/rules-business-and-organisations/obligations/controllerprocessor/what-data-controller-or-data-processor_en)
 - EU-Kommission: [Accountability und Compliance-Nachweis](https://commission.europa.eu/law/law-topic/data-protection/rules-business-and-organisations/obligations/how-can-i-demonstrate-my-organisation-compliant-gdpr_en)
 - EU-Kommission: [Data protection by design and default](https://commission.europa.eu/law/law-topic/data-protection/rules-business-and-organisations/obligations/what-does-data-protection-design-and-default-mean_en)

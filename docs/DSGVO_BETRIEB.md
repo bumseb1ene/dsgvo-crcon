@@ -8,6 +8,10 @@ Weitere Betreiber-Unterlagen:
 - `docs/VERZEICHNIS_VERARBEITUNGSTAETIGKEITEN.md`
 - `docs/TOM_CHECKLISTE.md`
 - `docs/BETROFFENENRECHTE_PROZESS.md`
+- `docs/DATENSCHUTZHINWEIS_TEMPLATE.md`
+- `docs/ANBIETER_UND_AVV_REGISTER.md`
+- `docs/INCIDENT_RESPONSE.md`
+- `docs/PRODUKTIONSFREIGABE.md`
 
 ## Was geaendert wurde
 
@@ -112,6 +116,9 @@ Fuer Auskunft oder Loeschanfragen zuerst Spieler-ID, bekannte Namen und Zeitraum
 ## Minimaler Produktions-Check
 
 - `.env` enthaelt keine echten Secrets im Git.
+- `docs/PRODUKTIONSFREIGABE.md` ist fuer die konkrete Instanz ausgefuellt.
+- Datenschutzhinweis ist auf Website, Discord oder in den Server-Regeln veroeffentlicht.
+- Anbieter/AVV-Register ist fuer Hosting, Discord, Sentry, Steam API und Backups geprueft.
 - `DONT_SEED_ADMIN_USER=1` ist gesetzt.
 - Direkte CRCON-Ports sind nicht ungeschuetzt oeffentlich.
 - TLS ist am Reverse Proxy aktiv.
