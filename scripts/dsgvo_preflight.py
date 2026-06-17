@@ -201,6 +201,24 @@ class Checker:
                 "settings",
                 "Worker logging must default to INFO",
             ),
+            (
+                "rcon/privacy.py",
+                r"inactive_player_days:\s*int\s*=\s*0",
+                "retention",
+                "Inactive player profile purge must be available and disabled by default",
+            ),
+            (
+                "rcon/cli.py",
+                r"--inactive-player-days",
+                "retention",
+                "privacy_purge CLI must expose inactive profile retention",
+            ),
+            (
+                "rcon/privacy.py",
+                r"br\.expires_at IS NULL\s+OR br\.expires_at >= :cutoff\s+OR br\.created_at >= :cutoff",
+                "retention",
+                "Inactive profile purge must preserve active or recently expired blacklist records",
+            ),
         ]
         for relative, pattern, topic, message in checks:
             self.require_text(relative, pattern, topic, message)

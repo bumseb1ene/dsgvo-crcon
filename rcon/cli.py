@@ -211,6 +211,13 @@ def clear():
 @click.option("--stats-days", type=int, default=365, show_default=True)
 @click.option("--steam-days", type=int, default=180, show_default=True)
 @click.option("--expired-blacklists-days", type=int, default=365, show_default=True)
+@click.option(
+    "--inactive-player-days",
+    type=int,
+    default=0,
+    show_default=True,
+    help="Delete fully inactive player profile rows after this many days. 0 disables this extra profile purge.",
+)
 def privacy_purge(
     execute,
     logs_days,
@@ -222,6 +229,7 @@ def privacy_purge(
     stats_days,
     steam_days,
     expired_blacklists_days,
+    inactive_player_days,
 ):
     """Purge old player-linkable data according to retention windows."""
     with enter_session() as sess:
@@ -237,6 +245,7 @@ def privacy_purge(
             stats_days=stats_days,
             steam_days=steam_days,
             expired_blacklists_days=expired_blacklists_days,
+            inactive_player_days=inactive_player_days,
         )
     click.echo(format_retention_results(results))
     if not execute:

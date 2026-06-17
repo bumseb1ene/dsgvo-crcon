@@ -87,12 +87,22 @@ Standardfristen im Befehl:
 | Spielerkommentare | 365 Tage |
 | Steam-Profil-/Ban-Cache | 180 Tage |
 | abgelaufene Blacklist-Eintraege | 365 Tage |
+| vollstaendig inaktive Spielerprofile | aus, optional per `--inactive-player-days` |
 
 Beispiel fuer kuerzere Game-Logs und laengere Auditlogs:
 
 ```bash
 docker compose exec backend_1 /code/manage.py privacy_purge --logs-days 14 --audit-days 730
 ```
+
+Optional koennen alte Spielerprofile einschliesslich Aliasnamen, Steam-/EOS-/Accountdetails und restlicher inaktiver Profilzeilen entfernt werden. Das ist standardmaessig aus und sollte erst nach VVT-/Loeschfreigabe aktiviert werden:
+
+```bash
+docker compose exec backend_1 /code/manage.py privacy_purge --inactive-player-days 730
+docker compose exec backend_1 /code/manage.py privacy_purge --inactive-player-days 730 --execute
+```
+
+Diese Profil-Loeschung schont aktive Blacklists, aktive VIPs, Watchlist-Treffer und Spieler mit Flags.
 
 Der Cron in `config/crontab` schreibt taeglich einen Dry-Run nach `/logs/privacy_purge.log`. Fuege `--execute` erst hinzu, wenn die Fristen intern freigegeben sind.
 
