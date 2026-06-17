@@ -47,6 +47,7 @@ Diese Checkliste ist der letzte Betreiber-Gate vor einem echten Produktivbetrieb
 Diese Kommandos sind Beispiele und muessen zur echten Compose-Datei und Instanz passen:
 
 ```bash
+python3 scripts/dsgvo_preflight.py
 docker compose -f docker-templates/one-server.yaml config
 docker compose exec backend_1 /code/manage.py privacy_purge
 docker compose exec backend_1 /code/manage.py privacy_purge --execute
@@ -56,6 +57,7 @@ Nachweise eintragen:
 
 | Kommando | Datum | Ergebnis | Bearbeiter |
 | --- | --- | --- | --- |
+| `python3 scripts/dsgvo_preflight.py` | TODO | TODO | TODO |
 | Compose-Konfiguration validiert | TODO | TODO | TODO |
 | `privacy_purge` Dry-Run | TODO | TODO | TODO |
 | `privacy_purge --execute` Testlauf | TODO | TODO | TODO |

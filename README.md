@@ -36,6 +36,12 @@ docker compose exec backend_1 /code/manage.py privacy_purge
 docker compose exec backend_1 /code/manage.py privacy_purge --execute
 ```
 
+Run the technical baseline preflight before publishing or deploying changes:
+
+```bash
+python3 scripts/dsgvo_preflight.py
+```
+
 This is a technical baseline, not legal advice and not an automatic compliance guarantee.
 
 ## Documentation

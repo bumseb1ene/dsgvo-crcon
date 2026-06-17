@@ -46,6 +46,16 @@ Start mit der Ein-Server-Vorlage:
 docker compose -f docker-templates/one-server.yaml up -d
 ```
 
+## Technischer Preflight
+
+Vor Commits, Releases oder Produktivfreigaben:
+
+```bash
+python3 scripts/dsgvo_preflight.py
+```
+
+Der Preflight prueft nur technische Repo-Baselines: Pflichtdokumente, sichere Env-Defaults, Compose-Weitergabe, Cron-Dry-Run und versehentlich getrackte Runtime-Dateien. Er ersetzt nicht die Betreiberfreigabe in `docs/PRODUKTIONSFREIGABE.md`.
+
 ## Loeschkonzept
 
 Vor jedem echten Lauf immer zuerst trocken pruefen:
@@ -117,6 +127,7 @@ Fuer Auskunft oder Loeschanfragen zuerst Spieler-ID, bekannte Namen und Zeitraum
 
 - `.env` enthaelt keine echten Secrets im Git.
 - `docs/PRODUKTIONSFREIGABE.md` ist fuer die konkrete Instanz ausgefuellt.
+- `python3 scripts/dsgvo_preflight.py` laeuft ohne Fehler.
 - Datenschutzhinweis ist auf Website, Discord oder in den Server-Regeln veroeffentlicht.
 - Anbieter/AVV-Register ist fuer Hosting, Discord, Sentry, Steam API und Backups geprueft.
 - `DONT_SEED_ADMIN_USER=1` ist gesetzt.

@@ -34,6 +34,7 @@ Die EU-Kommission beschreibt die DSGVO-Verantwortung als Nachweispflicht: Eine O
 | P0 | Zugriffskonzept finalisieren | Admins sehen Spielerprofile, Logs, Chat und Moderationshistorie. | Rollenmodell, Admin-Liste, Review-Termin |
 | P0 | TLS und Netzwerkhaertung pruefen | Direkte HTTP-/RCON-/DB-Ports duerfen nicht offen im Internet haengen. | Reverse Proxy mit TLS, Firewall-Regeln, keine offenen internen Ports |
 | P0 | Backup- und Loeschfristen freigeben | `privacy_purge --execute` darf erst laufen, wenn Wiederherstellung und Fristen geklaert sind. | dokumentierte Fristen, getestetes Restore, automatisierter Purge |
+| P0 | Technischen Preflight bestehen | Repo-Defaults koennen durch Updates wieder unsicher werden. | `python3 scripts/dsgvo_preflight.py` ohne Fehler |
 | P0 | Auftragsverarbeiter pruefen | VPS/Hosting, Discord, Sentry, Backup-Ziel, Mail/Monitoring koennen externe Empfaenger sein. | `docs/ANBIETER_UND_AVV_REGISTER.md` ausfuellen |
 | P0 | Incident-Prozess festlegen | Bei Datenschutzverletzungen kann eine Meldung binnen 72 Stunden erforderlich sein. | `docs/INCIDENT_RESPONSE.md` ausfuellen |
 | P1 | Betroffenenrechte-Prozess testen | Auskunft, Loeschung und Einschraenkung muessen praktisch durchfuehrbar sein. | Testfall nach `docs/BETROFFENENRECHTE_PROZESS.md` |
