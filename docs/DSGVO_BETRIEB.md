@@ -2,6 +2,13 @@
 
 Diese Repo-Variante ist eine technische und organisatorische Basis fuer einen datenschutzfreundlichen CRCON-Betrieb. Sie ersetzt keine Rechtsberatung und macht eine Instanz nicht automatisch DSGVO-konform; der Betreiber muss Zwecke, Rechtsgrundlagen, Informationspflichten und Auftragsverarbeiter selbst festlegen.
 
+Weitere Betreiber-Unterlagen:
+
+- `docs/DSGVO_GAP_ANALYSE.md`
+- `docs/VERZEICHNIS_VERARBEITUNGSTAETIGKEITEN.md`
+- `docs/TOM_CHECKLISTE.md`
+- `docs/BETROFFENENRECHTE_PROZESS.md`
+
 ## Was geaendert wurde
 
 - Sentry sendet standardmaessig keine Default-PII mehr (`SENTRY_SEND_DEFAULT_PII=false`).
