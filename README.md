@@ -42,6 +42,8 @@ Run the technical baseline preflight before publishing or deploying changes:
 python3 scripts/dsgvo_preflight.py
 ```
 
+GitHub Actions also runs this preflight on pushes and pull requests to `main`.
+
 This is a technical baseline, not legal advice and not an automatic compliance guarantee.
 
 ## Documentation

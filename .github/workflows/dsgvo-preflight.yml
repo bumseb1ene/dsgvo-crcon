@@ -1,0 +1,36 @@
+name: DSGVO preflight
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dsgvo-preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run DSGVO technical preflight
+        run: python3 scripts/dsgvo_preflight.py
+
+      - name: Compile DSGVO touched Python files
+        run: |
+          python3 -m py_compile \
+            scripts/dsgvo_preflight.py \
+            rcon/privacy.py \
+            rcon/cli.py \
+            rconweb/rconweb/settings.py

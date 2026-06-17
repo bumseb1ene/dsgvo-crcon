@@ -39,6 +39,7 @@ Diese Checkliste ist der letzte Betreiber-Gate vor einem echten Produktivbetrieb
 | Logging | `LOGGING_LEVEL=INFO` oder restriktiver | TODO |
 | Sentry | leer/deaktiviert oder `SENTRY_SEND_DEFAULT_PII=false` plus Anbieterpruefung | TODO |
 | Steam API | deaktiviert oder Zweck/Rechtsgrundlage/Hinweis dokumentiert | TODO |
+| GitHub Actions | DSGVO preflight auf `main` bestanden | TODO |
 | TLS | Hostname ist per HTTPS erreichbar | TODO |
 | Firewall | keine oeffentlichen Redis/Postgres/Backend/RCON-Ports | TODO |
 | Backups | verschluesselt, Zugriff begrenzt, Restore getestet | TODO |
