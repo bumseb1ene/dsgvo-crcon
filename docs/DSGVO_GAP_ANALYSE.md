@@ -25,6 +25,7 @@ Die EU-Kommission beschreibt die DSGVO-Verantwortung als Nachweispflicht: Eine O
 | Retention-Befehl mit Dry-Run | erledigt | `rcon/privacy.py`, `rcon/cli.py`, `privacy_purge` |
 | Datenlandkarte | erledigt | `docs/DATENLANDKARTE.md` |
 | Betriebshinweise | erledigt | `docs/DSGVO_BETRIEB.md` |
+| DSFA-/DPIA-Pruefungsvorlage | erledigt | `docs/DSFA_PRUEFUNG.md` |
 
 ## Muss vor Produktivbetrieb erledigt werden
 
@@ -40,7 +41,7 @@ Die EU-Kommission beschreibt die DSGVO-Verantwortung als Nachweispflicht: Eine O
 | P0 | Auftragsverarbeiter pruefen | VPS/Hosting, Discord, Sentry, Backup-Ziel, Mail/Monitoring koennen externe Empfaenger sein. | `docs/ANBIETER_UND_AVV_REGISTER.md` ausfuellen |
 | P0 | Incident-Prozess festlegen | Bei Datenschutzverletzungen kann eine Meldung binnen 72 Stunden erforderlich sein. | `docs/INCIDENT_RESPONSE.md` ausfuellen |
 | P1 | Betroffenenrechte-Prozess testen | Auskunft, Loeschung und Einschraenkung muessen praktisch durchfuehrbar sein. | Testfall nach `docs/BETROFFENENRECHTE_PROZESS.md` |
-| P1 | DPIA-Schwelle pruefen | Hohe Risiken koennen eine Datenschutz-Folgenabschaetzung erfordern. | Entscheidung dokumentiert: nicht erforderlich oder DPIA-Datei |
+| P1 | DPIA-Schwelle pruefen | Hohe Risiken koennen eine Datenschutz-Folgenabschaetzung erfordern. | `docs/DSFA_PRUEFUNG.md` ausgefuellt: nicht erforderlich oder DSFA-Datei |
 | P1 | Webhook-Minimierung | Discord kann Chat, Spieler-IDs und Moderationsereignisse weitertragen. | nur notwendige Webhooks, Kanalrechte, Aufbewahrung in Discord |
 | P1 | Audit fuer Admin-Konten | Alte Admins und geteilte Konten sind ein hohes Risiko. | monatlicher Review, keine Shared Accounts |
 | P2 | Monitoring ohne Personenbezug | Metriken sollten moeglichst technische Betriebswerte sein. | Monitoring-Liste ohne Spieler- oder Chatdaten |
@@ -61,12 +62,13 @@ Vor dem ersten Live-Betrieb sollte der Betreiber diese Reihenfolge abarbeiten:
 2. `docs/TOM_CHECKLISTE.md` abarbeiten.
 3. `docs/DATENSCHUTZHINWEIS_TEMPLATE.md` anpassen und veroeffentlichen.
 4. `docs/ANBIETER_UND_AVV_REGISTER.md` ausfuellen.
-5. `docs/INCIDENT_RESPONSE.md` fuer Kontaktkette und 72-Stunden-Pruefung vorbereiten.
-6. `privacy_purge` trocken ausfuehren und Ergebnis pruefen.
-7. Backup-Restore testen.
-8. `privacy_purge --execute` manuell testen.
-9. `docs/PRODUKTIONSFREIGABE.md` abschliessen.
-10. Erst danach automatisierte Loeschung aktivieren.
+5. `docs/DSFA_PRUEFUNG.md` ausfuellen und Entscheidung dokumentieren.
+6. `docs/INCIDENT_RESPONSE.md` fuer Kontaktkette und 72-Stunden-Pruefung vorbereiten.
+7. `privacy_purge` trocken ausfuehren und Ergebnis pruefen.
+8. Backup-Restore testen.
+9. `privacy_purge --execute` manuell testen.
+10. `docs/PRODUKTIONSFREIGABE.md` abschliessen.
+11. Erst danach automatisierte Loeschung aktivieren.
 
 ## Quellen
 

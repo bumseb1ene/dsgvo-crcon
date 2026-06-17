@@ -25,7 +25,7 @@ Diese Checkliste ist der letzte Betreiber-Gate vor einem echten Produktivbetrieb
 | TOMs abgehakt | `docs/TOM_CHECKLISTE.md` mit Datum/Verantwortlichem | offen |
 | Betroffenenrechte getestet | Testfall aus `docs/BETROFFENENRECHTE_PROZESS.md` durchgespielt | offen |
 | Incident-Prozess bereit | `docs/INCIDENT_RESPONSE.md` Kontaktkette und Vorlage ausgefuellt | offen |
-| DPIA-Entscheidung | dokumentiert: nicht erforderlich oder DPIA erstellt | offen |
+| DSFA/DPIA-Entscheidung | `docs/DSFA_PRUEFUNG.md` ausgefuellt: nicht erforderlich oder DSFA erstellt | offen |
 
 ## Technische Freigabe
 

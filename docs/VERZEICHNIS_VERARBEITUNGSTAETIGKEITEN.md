@@ -93,4 +93,4 @@ Diese Vorlage ist fuer den konkreten CRCON-Betrieb auszufuellen. Sie ersetzt kei
 - Sind reale Loeschfristen kuerzer oder gleich den Purge-Parametern?
 - Gibt es oeffentliche Statistiken oder Discord-Posts mit Spielerbezug?
 - Sind Hosting, Backup, Discord, Sentry und sonstige Dienstleister geprueft?
-- Wurde die DPIA-Schwelle dokumentiert?
+- Wurde die DSFA/DPIA-Schwelle in `docs/DSFA_PRUEFUNG.md` dokumentiert?

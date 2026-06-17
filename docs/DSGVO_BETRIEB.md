@@ -10,6 +10,7 @@ Weitere Betreiber-Unterlagen:
 - `docs/BETROFFENENRECHTE_PROZESS.md`
 - `docs/DATENSCHUTZHINWEIS_TEMPLATE.md`
 - `docs/ANBIETER_UND_AVV_REGISTER.md`
+- `docs/DSFA_PRUEFUNG.md`
 - `docs/INCIDENT_RESPONSE.md`
 - `docs/PRODUKTIONSFREIGABE.md`
 
@@ -26,6 +27,7 @@ Weitere Betreiber-Unterlagen:
 - Der automatische Steam-Profil-Cron ist deaktiviert, bis der Zweck dokumentiert und ein API-Key bewusst gesetzt ist.
 - Logrotate rotiert taeglich und haelt standardmaessig sieben komprimierte Logdateien.
 - `privacy_purge` bietet einen Dry-Run und eine ausfuehrbare Fristenloeschung fuer alte personenbezogene oder spielerbezogene Daten.
+- `docs/DSFA_PRUEFUNG.md` dokumentiert die Entscheidung, ob eine DSFA/DPIA fuer die konkrete Instanz erforderlich ist.
 
 ## Erstinstallation
 
@@ -153,3 +155,4 @@ Fuer Auskunft oder Loeschanfragen zuerst Spieler-ID, bekannte Namen und Zeitraum
 - Discord-Webhooks sind minimiert und nur fuer notwendige Ereignisse aktiv.
 - `privacy_purge` wurde trocken getestet.
 - Backups sind verschluesselt und rueckspielbar.
+- `docs/DSFA_PRUEFUNG.md` ist fuer die konkrete Instanz ausgefuellt.
