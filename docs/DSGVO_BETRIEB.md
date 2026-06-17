@@ -17,6 +17,10 @@ Weitere Betreiber-Unterlagen:
 
 - Sentry sendet standardmaessig keine Default-PII mehr (`SENTRY_SEND_DEFAULT_PII=false`).
 - Session-Cookies sind standardmaessig HTTP-only (`SESSION_COOKIE_HTTPONLY=true`).
+- Django-Debug ist standardmaessig aus (`DJANGO_DEBUG=false`).
+- Session- und CSRF-Cookies sind fuer HTTPS-Betrieb standardmaessig `Secure`.
+- `RCONWEB_API_SECRET` ist in Produktion verpflichtend; ohne Secret startet Django nicht.
+- Sentry-Breadcrumbs fallen standardmaessig auf `INFO` statt `DEBUG`.
 - Die Python/Django-Logger fallen ohne explizite Konfiguration auf `INFO` statt `DEBUG` zurueck.
 - Das vorhersehbare `admin`/`admin`-Seed-Konto ist im Env-Beispiel deaktiviert (`DONT_SEED_ADMIN_USER=1`).
 - Der automatische Steam-Profil-Cron ist deaktiviert, bis der Zweck dokumentiert und ein API-Key bewusst gesetzt ist.
@@ -32,7 +36,7 @@ Copy-Item .env.dsgvo.example .env
 Danach in `.env` mindestens setzen:
 
 - `HLL_DB_PASSWORD`
-- `RCONWEB_API_SECRET`
+- `RCONWEB_API_SECRET` oder `SECRET_KEY`
 - `HLL_HOST`
 - `HLL_PORT`
 - `HLL_PASSWORD`
@@ -131,6 +135,7 @@ Fuer Auskunft oder Loeschanfragen zuerst Spieler-ID, bekannte Namen und Zeitraum
 - Datenschutzhinweis ist auf Website, Discord oder in den Server-Regeln veroeffentlicht.
 - Anbieter/AVV-Register ist fuer Hosting, Discord, Sentry, Steam API und Backups geprueft.
 - `DONT_SEED_ADMIN_USER=1` ist gesetzt.
+- `DJANGO_DEBUG=false`, `SESSION_COOKIE_SECURE=true` und `CSRF_COOKIE_SECURE=true` sind gesetzt.
 - Direkte CRCON-Ports sind nicht ungeschuetzt oeffentlich.
 - TLS ist am Reverse Proxy aktiv.
 - Sentry bleibt leer oder ist mit AVV/DPA und `SENTRY_SEND_DEFAULT_PII=false` dokumentiert.

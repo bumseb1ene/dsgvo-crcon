@@ -17,6 +17,7 @@ import socket
 from subprocess import PIPE, run
 
 import sentry_sdk
+from django.core.exceptions import ImproperlyConfigured
 from sentry_sdk import configure_scope
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
@@ -97,7 +98,7 @@ LOGGING = {
 
 
 sentry_logging = LoggingIntegration(
-    level=logging.DEBUG,  # Capture debug and above as breadcrumbs
+    level=getattr(logging, os.getenv("SENTRY_BREADCRUMB_LEVEL", "INFO").upper(), logging.INFO),
     event_level=logging.ERROR,  # Send errors as events
 )
 
@@ -136,14 +137,16 @@ CHANNEL_LAYERS = {
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # TODO: move that to env. We don't need it yet but we might
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (
-    os.getenv("RCONWEB_API_SECRET", None)
-    or "9*i9zm1jx(5y-ns=*r6p%#6-q!bst98u3o3pw6joyf#-e(bh(0"
-)
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DJANGO_DEBUG", False) is not False
+DEBUG = env_bool("DJANGO_DEBUG", False)
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.getenv("RCONWEB_API_SECRET") or os.getenv("SECRET_KEY")
+if not SECRET_KEY:
+    if DEBUG:
+        SECRET_KEY = "dev-only-insecure-secret-key"
+    else:
+        raise ImproperlyConfigured("RCONWEB_API_SECRET must be set when DJANGO_DEBUG=false")
 
 ALLOWED_HOSTS = [
     "backend:8000",
@@ -162,10 +165,15 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = False
 # Application definition
 SESSION_COOKIE_HTTPONLY = env_bool("SESSION_COOKIE_HTTPONLY", True)
+SESSION_COOKIE_SECURE = env_bool("SESSION_COOKIE_SECURE", not DEBUG)
+CSRF_COOKIE_SECURE = env_bool("CSRF_COOKIE_SECURE", not DEBUG)
 CSRF_COOKIE_SAMESITE = "Lax"
 SESSION_COOKIE_SAMESITE = "Lax"
 SESSION_COOKIE_DOMAIN = os.getenv("SESSION_COOKIE_DOMAIN") or None
 CSRF_COOKIE_DOMAIN = os.getenv("CSRF_COOKIE_DOMAIN") or None
+SECURE_SSL_REDIRECT = env_bool("SECURE_SSL_REDIRECT", False)
+if env_bool("SECURE_PROXY_SSL_HEADER", False):
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Required as of Django 4.0 otherwise it causes CSRF issues
 # if we don't include the origin

@@ -33,8 +33,13 @@ REQUIRED_DOCS = [
 ]
 
 REQUIRED_ENV = {
+    "DJANGO_DEBUG": FALSE_VALUES,
     "DONT_SEED_ADMIN_USER": TRUE_VALUES,
     "SESSION_COOKIE_HTTPONLY": TRUE_VALUES,
+    "SESSION_COOKIE_SECURE": TRUE_VALUES,
+    "CSRF_COOKIE_SECURE": TRUE_VALUES,
+    "SECURE_SSL_REDIRECT": FALSE_VALUES,
+    "SECURE_PROXY_SSL_HEADER": FALSE_VALUES,
     "SENTRY_SEND_DEFAULT_PII": FALSE_VALUES,
 }
 
@@ -119,6 +124,15 @@ class Checker:
             else:
                 self.fail("env", f"{env_file}: LOGGING_LEVEL should be one of {sorted(SAFE_LOG_LEVELS)}, got {level or '<missing>'}")
 
+            sentry_level = values.get("SENTRY_BREADCRUMB_LEVEL", "").strip().upper()
+            if sentry_level in SAFE_LOG_LEVELS:
+                self.pass_()
+            else:
+                self.fail(
+                    "env",
+                    f"{env_file}: SENTRY_BREADCRUMB_LEVEL should be one of {sorted(SAFE_LOG_LEVELS)}, got {sentry_level or '<missing>'}",
+                )
+
     def check_python_settings(self) -> None:
         checks = [
             (
@@ -132,6 +146,48 @@ class Checker:
                 r'SESSION_COOKIE_HTTPONLY\s*=\s*env_bool\("SESSION_COOKIE_HTTPONLY",\s*True\)',
                 "settings",
                 "Session cookies must default to HTTP-only",
+            ),
+            (
+                "rconweb/rconweb/settings.py",
+                r'DEBUG\s*=\s*env_bool\("DJANGO_DEBUG",\s*False\)',
+                "settings",
+                "Django DEBUG must parse DJANGO_DEBUG as a boolean and default to False",
+            ),
+            (
+                "rconweb/rconweb/settings.py",
+                r'raise ImproperlyConfigured\("RCONWEB_API_SECRET must be set when DJANGO_DEBUG=false"\)',
+                "settings",
+                "Production settings must fail closed when RCONWEB_API_SECRET is missing",
+            ),
+            (
+                "rconweb/rconweb/settings.py",
+                r'os\.getenv\("SENTRY_BREADCRUMB_LEVEL",\s*"INFO"\)',
+                "settings",
+                "Sentry breadcrumbs must default to INFO",
+            ),
+            (
+                "rconweb/rconweb/settings.py",
+                r'SESSION_COOKIE_SECURE\s*=\s*env_bool\("SESSION_COOKIE_SECURE",\s*not DEBUG\)',
+                "settings",
+                "Session cookies must be secure by default outside DEBUG",
+            ),
+            (
+                "rconweb/rconweb/settings.py",
+                r'CSRF_COOKIE_SECURE\s*=\s*env_bool\("CSRF_COOKIE_SECURE",\s*not DEBUG\)',
+                "settings",
+                "CSRF cookies must be secure by default outside DEBUG",
+            ),
+            (
+                "rconweb/rconweb/settings.py",
+                r'SECURE_SSL_REDIRECT\s*=\s*env_bool\("SECURE_SSL_REDIRECT",\s*False\)',
+                "settings",
+                "SECURE_SSL_REDIRECT must be explicitly configurable",
+            ),
+            (
+                "rconweb/rconweb/settings.py",
+                r'env_bool\("SECURE_PROXY_SSL_HEADER",\s*False\)',
+                "settings",
+                "SECURE_PROXY_SSL_HEADER must be opt-in",
             ),
             (
                 "rconweb/rconweb/settings.py",
@@ -178,8 +234,14 @@ class Checker:
 
     def check_compose_templates(self) -> None:
         required = {
+            "DJANGO_DEBUG": r"DJANGO_DEBUG:\s*\$\{DJANGO_DEBUG\}",
             "DONT_SEED_ADMIN_USER": r"DONT_SEED_ADMIN_USER:\s*\$\{DONT_SEED_ADMIN_USER\}",
+            "SENTRY_BREADCRUMB_LEVEL": r"SENTRY_BREADCRUMB_LEVEL:\s*\$\{SENTRY_BREADCRUMB_LEVEL\}",
             "SESSION_COOKIE_HTTPONLY": r"SESSION_COOKIE_HTTPONLY:\s*\$\{SESSION_COOKIE_HTTPONLY\}",
+            "SESSION_COOKIE_SECURE": r"SESSION_COOKIE_SECURE:\s*\$\{SESSION_COOKIE_SECURE\}",
+            "CSRF_COOKIE_SECURE": r"CSRF_COOKIE_SECURE:\s*\$\{CSRF_COOKIE_SECURE\}",
+            "SECURE_SSL_REDIRECT": r"SECURE_SSL_REDIRECT:\s*\$\{SECURE_SSL_REDIRECT\}",
+            "SECURE_PROXY_SSL_HEADER": r"SECURE_PROXY_SSL_HEADER:\s*\$\{SECURE_PROXY_SSL_HEADER\}",
             "SENTRY_SEND_DEFAULT_PII": r"SENTRY_SEND_DEFAULT_PII:\s*\$\{SENTRY_SEND_DEFAULT_PII\}",
         }
         for relative in ("docker-templates/one-server.yaml", "docker-templates/ten-servers.yaml"):

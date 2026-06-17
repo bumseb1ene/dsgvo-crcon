@@ -32,7 +32,10 @@ Diese Checkliste ist der letzte Betreiber-Gate vor einem echten Produktivbetrieb
 | Bereich | Pruefung | Ergebnis |
 | --- | --- | --- |
 | Secrets | `.env` liegt nur auf Zielsystem und nicht in Git | TODO |
+| Django Secret | `RCONWEB_API_SECRET` oder `SECRET_KEY` ist stark und eindeutig pro Instanz | TODO |
 | Admin-Seed | `DONT_SEED_ADMIN_USER=1` | TODO |
+| Django Debug | `DJANGO_DEBUG=false` | TODO |
+| Cookie-Sicherheit | `SESSION_COOKIE_HTTPONLY=true`, `SESSION_COOKIE_SECURE=true`, `CSRF_COOKIE_SECURE=true` | TODO |
 | Logging | `LOGGING_LEVEL=INFO` oder restriktiver | TODO |
 | Sentry | leer/deaktiviert oder `SENTRY_SEND_DEFAULT_PII=false` plus Anbieterpruefung | TODO |
 | Steam API | deaktiviert oder Zweck/Rechtsgrundlage/Hinweis dokumentiert | TODO |

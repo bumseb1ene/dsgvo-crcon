@@ -17,6 +17,8 @@ Die EU-Kommission beschreibt die DSGVO-Verantwortung als Nachweispflicht: Eine O
 | Datenschutzfreundliche Defaults | erledigt | `default.env`, `.env.dsgvo.example`, `rconweb/rconweb/settings.py` |
 | Keine Default-PII an Sentry | erledigt | `SENTRY_SEND_DEFAULT_PII=false` |
 | HTTP-only Session-Cookies | erledigt | `SESSION_COOKIE_HTTPONLY=true` |
+| Secure-Cookies und Debug aus | erledigt | `DJANGO_DEBUG=false`, `SESSION_COOKIE_SECURE=true`, `CSRF_COOKIE_SECURE=true` |
+| Produktions-Secret verpflichtend | erledigt | Start bricht ohne `RCONWEB_API_SECRET`/`SECRET_KEY` bei `DJANGO_DEBUG=false` ab |
 | Weniger Debug-Logging | erledigt | `LOGGING_LEVEL=INFO`, Python-Settings |
 | Vorhersehbares Admin-Seed-Konto deaktiviert | erledigt | `DONT_SEED_ADMIN_USER=1` |
 | Steam-Anreicherung nicht automatisch aktiv | erledigt | `config/crontab` |

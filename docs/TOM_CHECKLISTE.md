@@ -16,6 +16,8 @@ Technische und organisatorische Massnahmen muessen zum konkreten Betrieb passen.
 ## Netzwerk und Transport
 
 - [ ] CRCON-Frontend ist nur ueber TLS erreichbar.
+- [ ] `DJANGO_DEBUG=false`, `SESSION_COOKIE_SECURE=true` und `CSRF_COOKIE_SECURE=true` sind gesetzt.
+- [ ] `SECURE_PROXY_SSL_HEADER=true` ist nur gesetzt, wenn der Reverse Proxy `X-Forwarded-Proto` kontrolliert setzt oder ueberschreibt.
 - [ ] Direkte Backend-, Redis-, Postgres- und RCON-Ports sind nicht oeffentlich offen.
 - [ ] Firewall erlaubt nur notwendige Ports.
 - [ ] Reverse Proxy setzt sichere Header, soweit kompatibel.
